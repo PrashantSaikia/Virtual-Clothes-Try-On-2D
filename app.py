@@ -7,6 +7,9 @@ import matplotlib.pyplot as plt
 from diffusers import DiffusionPipeline
 from transformers import CLIPSegProcessor, CLIPSegForImageSegmentation
 
+from share_btn import community_icon_html, loading_icon_html, share_js
+
+
 processor = CLIPSegProcessor.from_pretrained("CIDAS/clipseg-rd64-refined")
 model = CLIPSegForImageSegmentation.from_pretrained("CIDAS/clipseg-rd64-refined")
 
@@ -67,7 +70,6 @@ def predict(input_image, text_query, reference, scale, seed, step):
 
     return output, gr.update(visible=True), gr.update(visible=True), gr.update(visible=True)
 
-
 css = '''
 .container {max-width: 1150px;margin: auto;padding-top: 1.5rem}
 #image_upload{min-height:400px}
@@ -106,6 +108,7 @@ css = '''
     display: none !important;
 }
 '''
+
 example = {}
 ref_dir = 'examples/reference'
 image_dir = 'examples/image'
@@ -117,7 +120,7 @@ image_list.sort()
 
 image_blocks = gr.Blocks(css=css)
 with image_blocks as demo:
-    gr.HTML('Virtual Clothes Try-On Demo') #read_content("header.html"))
+    # gr.HTML(read_content("header.html"))
     with gr.Group():
         with gr.Box():
             with gr.Row():
@@ -139,6 +142,10 @@ with image_blocks as demo:
                             rounded=(False, True, True, False),
                             full_width=True,
                         )
+                    with gr.Group(elem_id="share-btn-container"):
+                        community_icon = gr.HTML(community_icon_html, visible=True)
+                        loading_icon = gr.HTML(loading_icon_html, visible=True)
+                        share_button = gr.Button("Share to community", elem_id="share-btn", visible=True)
 
             with gr.Row():
                 with gr.Column():
@@ -159,7 +166,9 @@ with image_blocks as demo:
             btn.click(
                 fn=predict, 
                 inputs=[image, text, reference, guidance, seed, steps], 
-                outputs=[image_out]
+                outputs=[image_out, community_icon, loading_icon, share_button]
             )
+            share_button.click(None, [], [], _js=share_js)
+
 
 image_blocks.launch(share=True)
