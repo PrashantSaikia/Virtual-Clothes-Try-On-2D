@@ -13,5 +13,6 @@ If you're running it on Mac OS with M1 or M2 chip, run `app_mac.py`; the GPU acc
 git clone https://github.com/PrashantSaikia/Virtual-Clothes-Try-On-2D.git
 cd Virtual-Clothes-Try-On-2D
 pip install -r requirements.txt
-python app.py
+python app.py 
+#python app_mac if running on Mac OS with M1 or M2 chip
 ```
