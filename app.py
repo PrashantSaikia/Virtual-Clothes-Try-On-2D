@@ -7,9 +7,6 @@ import matplotlib.pyplot as plt
 from diffusers import DiffusionPipeline
 from transformers import CLIPSegProcessor, CLIPSegForImageSegmentation
 
-from share_btn import community_icon_html, loading_icon_html, share_js
-
-
 processor = CLIPSegProcessor.from_pretrained("CIDAS/clipseg-rd64-refined")
 model = CLIPSegForImageSegmentation.from_pretrained("CIDAS/clipseg-rd64-refined")
 
@@ -142,10 +139,6 @@ with image_blocks as demo:
                             rounded=(False, True, True, False),
                             full_width=True,
                         )
-                    with gr.Group(elem_id="share-btn-container"):
-                        community_icon = gr.HTML(community_icon_html, visible=True)
-                        loading_icon = gr.HTML(loading_icon_html, visible=True)
-                        share_button = gr.Button("Share to community", elem_id="share-btn", visible=True)
 
             with gr.Row():
                 with gr.Column():
@@ -166,8 +159,7 @@ with image_blocks as demo:
             btn.click(
                 fn=predict, 
                 inputs=[image, text, reference, guidance, seed, steps], 
-                outputs=[image_out, community_icon, loading_icon, share_button]
+                outputs=[image_out]
             )
-            share_button.click(None, [], [], _js=share_js)
 
-image_blocks.launch()
+image_blocks.launch(share=True)
