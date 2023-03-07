@@ -1,0 +1,10 @@
+--extra-index-url https://download.pytorch.org/whl/cu113 
+torch
+torchvision
+git+https://github.com/huggingface/diffusers.git
+git+https://github.com/huggingface/transformers.git
+ftfy
+numpy
+matplotlib
+uuid
+opencv-python
