@@ -2,6 +2,10 @@
 
 If you're running it on Mac OS with M1 or M2 chip, run `app_mac.py`; the GPU accelarator is `mps` in Mac as opposed to `CUDA` otherwise. And also, `pipe.enable_attention_slicing()` is added to make it run a little faster. Takes around 10x longer on M1 than running on CUDA. 
 
+P.S. If you get error when downloading large model files in Google Colab, install `gdown` the following way and try again:
+
+`pip install --upgrade --no-cache-dir gdown`
+
 ## Demo
 
 ![image](https://user-images.githubusercontent.com/39755678/223530196-d5d5f45d-9180-497a-9f8e-c5e00e3060d7.png)
