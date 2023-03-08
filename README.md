@@ -6,6 +6,8 @@ P.S. If you get error when downloading large model files in Google Colab, instal
 
 `pip install --upgrade --no-cache-dir gdown`
 
+Or simply calling  `gdown "<drive-id>&confirm=t"` might also work.
+
 ## Demo
 
 ![image](https://user-images.githubusercontent.com/39755678/223530196-d5d5f45d-9180-497a-9f8e-c5e00e3060d7.png)
