@@ -8,3 +8,5 @@ numpy
 matplotlib
 uuid
 opencv-python
+accelerate
+gradio
